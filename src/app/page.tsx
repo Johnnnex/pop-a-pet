@@ -61,16 +61,16 @@ const Home = () => {
       <h1 className="text-2xl font-bold mb-4">Pop A Pet</h1>
       <h2 className="text-xl font-semibold mb-4">{score}</h2>
       <div
-        className="w-72 h-72 mx-auto grid grid-cols-3 gap-2 bg-cover rounded-xl border-4 border-white"
+        className="md:w-[60%] md:h-[60%] p-16 mx-auto justify-between flex gap-[20%] flex-wrap bg-cover rounded-xl border-4 border-white"
         style={{ backgroundImage: 'url("/soil.png")' }}
       >
-        {Array.from({ length: 9 }).map((_, index) => (
+        {Array.from({ length: 12 }).map((_, index) => (
           <div
             key={index}
             ref={(el) => {
               boardRef.current[index] = el;
             }}
-            className="w-24 h-24 bg-cover relative cursor-pointer"
+            className="max-w-24 basis-[25%] h-24 bg-cover relative cursor-pointer"
             style={{ backgroundImage: 'url("/pipe.png")' }}
             onClick={() => handleTileClick(index)}
           >
