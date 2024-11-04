@@ -4,8 +4,15 @@
 /* eslint-disable @next/next/no-img-element */
 
 import { useState, useEffect, useRef } from "react";
+import { Space_Grotesk } from "next/font/google";
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ["300", "400", "500"],
+  subsets: ["latin"],
+});
 
 const Home = () => {
+  const numberOfPots = 9;
   const [score, setScore] = useState(0);
   const [gameOver, setGameOver] = useState(false);
   const [molePosition, setMolePosition] = useState<number | null>(null);
@@ -29,7 +36,7 @@ const Home = () => {
     };
   }, [gameOver]);
 
-  const getRandomPosition = () => Math.floor(Math.random() * 9);
+  const getRandomPosition = () => Math.floor(Math.random() * numberOfPots);
 
   const setMole = () => {
     const randomPosition = getRandomPosition();
@@ -50,27 +57,43 @@ const Home = () => {
 
     if (index === molePosition) {
       setScore(score + 10);
+      setMolePosition(null); // Immediately set mole position to null after click
     } else if (index === plantPosition) {
       setGameOver(true);
       alert(`GAME OVER! Your score is: ${score}`);
+      setPlantPosition(null); // Immediately set plant position to null after click
     }
   };
 
+  const handleReplay = () => {
+    setScore(0);
+    setGameOver(false);
+  };
+
   return (
-    <div className="text-center bg-[url(/mario-bg.jpg)] h-screen">
-      <h1 className="text-2xl font-bold mb-4">Pop A Pet</h1>
-      <h2 className="text-xl font-semibold mb-4">{score}</h2>
-      <div
-        className="md:w-[60%] md:h-[60%] p-16 mx-auto justify-between flex gap-[20%] flex-wrap bg-cover rounded-xl border-4 border-white"
-        style={{ backgroundImage: 'url("/soil.png")' }}
-      >
-        {Array.from({ length: 12 }).map((_, index) => (
+    <div
+      className={`text-center ${spaceGrotesk.className} bg-[url(/soil.png)] h-screen bg-cover bg-center overflow-hidden`}
+    >
+      <h1 className="text-3xl text-white font-bold mb-6">Pop A Pet</h1>
+      <h2 className="text-2xl text-white font-semibold mb-6">
+        Your Score: {score}
+      </h2>
+      {gameOver && (
+        <button
+          onClick={handleReplay}
+          className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+        >
+          Replay
+        </button>
+      )}
+      <div className="flex flex-wrap gap-[2rem] md:gap-[4rem] w-[100%] md:w-[70%] xl:w-[30%] justify-between mt-[5rem] border mx-auto">
+        {Array.from({ length: numberOfPots }).map((_, index) => (
           <div
             key={index}
             ref={(el) => {
               boardRef.current[index] = el;
             }}
-            className="max-w-24 basis-[25%] h-24 bg-cover relative cursor-pointer"
+            className="w-24 h-24 bg-cover relative cursor-pointer"
             style={{ backgroundImage: 'url("/pipe.png")' }}
             onClick={() => handleTileClick(index)}
           >
