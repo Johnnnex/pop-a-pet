@@ -154,7 +154,7 @@ const Home = () => {
                 key={`button__${index}`}
               >
                 <p
-                  className={`text-xl ${
+                  className={`text-xl transition-all duration-[.4s] ${
                     difficulty.name === name ? "text-[#FBFF02]" : "text-white"
                   } font-medium`}
                 >
