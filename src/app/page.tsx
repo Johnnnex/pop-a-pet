@@ -118,7 +118,7 @@ const Home = () => {
       <img src="/logo.svg" className="w-fit mx-auto" alt="" />
       <section className="flex justify-between items-start md:items-center mt-[1rem] md:mt-0 w-[90%] mx-auto">
         <div className="flex flex-col items-start md:gap-[.75rem]">
-          <h2 className="text-[2rem] text-yellow-300 font-semibold">
+          <h2 className="text-[2rem] text-yellow-300 font-[700]">
             Your Score: {score}
           </h2>
           {highScore !== null && (
