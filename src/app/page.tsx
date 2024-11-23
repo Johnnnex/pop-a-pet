@@ -7,7 +7,7 @@ import { useState, useEffect, useRef } from "react";
 import { Space_Grotesk } from "next/font/google";
 import GameOver from "@/components/GameOver";
 
-export const spaceGrotesk = Space_Grotesk({
+const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500"],
   subsets: ["latin"],
 });

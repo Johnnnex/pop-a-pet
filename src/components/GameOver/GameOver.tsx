@@ -1,6 +1,12 @@
 /* eslint-disable @next/next/no-img-element */
-import { spaceGrotesk } from "@/app/page";
+
+import { Space_Grotesk } from "next/font/google";
 import React from "react";
+
+const spaceGrotesk = Space_Grotesk({
+  weight: ["300", "400", "500"],
+  subsets: ["latin"],
+});
 
 const GameOver = ({
   time,
