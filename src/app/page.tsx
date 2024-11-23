@@ -118,11 +118,11 @@ const Home = () => {
       <img src="/logo.svg" className="w-fit mx-auto" alt="" />
       <section className="flex justify-between items-start md:items-center mt-[1rem] md:mt-0 w-[90%] mx-auto">
         <div className="flex flex-col items-start md:gap-[.75rem]">
-          <h2 className="text-2xl text-white font-semibold">
+          <h2 className="text-[2rem] text-yellow-300 font-semibold">
             Your Score: {score}
           </h2>
           {highScore !== null && (
-            <h2 className="text-xl text-yellow-300 font-medium">
+            <h2 className="text-xl text-white font-medium">
               High Score: {highScore}
             </h2>
           )}
