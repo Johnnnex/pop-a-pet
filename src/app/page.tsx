@@ -5,12 +5,15 @@
 
 import { useState, useEffect, useRef } from "react";
 import { Space_Grotesk } from "next/font/google";
+import localFont from "next/font/local";
 import GameOver from "@/components/GameOver";
 
 const spaceGrotesk = Space_Grotesk({
   weight: ["300", "400", "500"],
   subsets: ["latin"],
 });
+
+const superPixel = localFont({ src: "../../public/font/super-pixel.ttf" });
 
 const Home = () => {
   const numberOfPots = 9;
@@ -127,13 +130,18 @@ const Home = () => {
     <main
       className={`text-center ${spaceGrotesk.className} bg-[url(/soil.png)] min-h-screen pb-[2rem] bg-cover bg-center`}
     >
-      <img src="/logo.svg" className="w-fit mx-auto" alt="" />
+      <div
+        className={`w-fit mx-auto flex items-center gap-[.75rem] ${superPixel.className} text-[1.5rem] text-white`}
+      >
+        <img src="/logo.svg" className="" alt="" />
+        POP THE PEST
+      </div>
       <section className="flex justify-between items-start md:items-center mt-[1rem] md:mt-0 w-[90%] mx-auto">
         <div className="flex flex-col items-start md:gap-[.75rem]">
           <h2 className="text-[2rem] text-yellow-300 font-[700]">
             Your Score: {score}
           </h2>
-          {highScore !== null && (
+          {!!highScore && (
             <h2 className="text-xl text-white font-medium">
               High Score: {highScore}
             </h2>
@@ -145,7 +153,7 @@ const Home = () => {
         {!gameStarted && (
           <button
             onClick={handleStart}
-            className="bg-[#2262FF] hidden md:block hover:bg-blue-700 text-black font-bold py-4 px-6 h-fit mx-auto min-w-[10.25rem] rounded-[.5rem]"
+            className="bg-[#2262FF] hidden md:block text-white font-bold py-4 px-6 h-fit mx-auto min-w-[10.25rem] rounded-[.5rem]"
           >
             {gameOver ? "Replay" : "Start"}
           </button>
