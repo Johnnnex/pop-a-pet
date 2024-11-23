@@ -50,7 +50,7 @@ const Home = () => {
 
     const timerInterval = setInterval(() => {
       setTimer((prev) => {
-        if (prev === 30) {
+        if (prev > 29) {
           handleEnd();
           return 30;
         }
@@ -145,7 +145,7 @@ const Home = () => {
         {!gameStarted && (
           <button
             onClick={handleStart}
-            className="bg-[#2262FF] hidden md:block hover:bg-blue-700 text-white font-bold py-4 px-6 h-fit mx-auto min-w-[10.25rem] rounded-[.5rem]"
+            className="bg-[#2262FF] hidden md:block hover:bg-blue-700 text-black font-bold py-4 px-6 h-fit mx-auto min-w-[10.25rem] rounded-[.5rem]"
           >
             {gameOver ? "Replay" : "Start"}
           </button>
