@@ -49,7 +49,10 @@ const Home = () => {
     }, difficulty.plantTime as number);
 
     const timerInterval = setInterval(() => {
-      setTimer((prev) => prev + 1);
+      setTimer((prev) => {
+        if (prev === 30) handleEnd();
+        return prev + 1;
+      });
     }, 1000);
 
     return () => {
@@ -58,6 +61,8 @@ const Home = () => {
       clearInterval(timerInterval);
     };
   }, [gameStarted, gameOver, difficulty]);
+
+  useEffect(() => {}, [timer]);
 
   const getRandomPosition = () => Math.floor(Math.random() * numberOfPots);
 
@@ -86,13 +91,17 @@ const Home = () => {
       setScore(score + 10);
       setMolePosition(null); // Immediately set mole position to null after click
     } else if (index === plantPosition) {
-      setGameOver(true);
-      setGameStarted(false);
-      if (score > (highScore || 0)) {
-        setHighScore(score);
-      }
-      setPlantPosition(null); // Immediately set plant position to null after click
+      handleEnd();
     }
+  };
+
+  const handleEnd = () => {
+    setGameOver(true);
+    setGameStarted(false);
+    if (score > (highScore || 0)) {
+      setHighScore(score);
+    }
+    setPlantPosition(null);
   };
 
   const handleStart = () => {
