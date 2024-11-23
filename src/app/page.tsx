@@ -50,7 +50,10 @@ const Home = () => {
 
     const timerInterval = setInterval(() => {
       setTimer((prev) => {
-        if (prev === 30) handleEnd();
+        if (prev === 30) {
+          handleEnd();
+          return 30;
+        }
         return prev + 1;
       });
     }, 1000);
